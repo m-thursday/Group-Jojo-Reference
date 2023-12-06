@@ -19,7 +19,7 @@ public class Game extends JFrame
 		viewO = new ViewOne(controller, model);
 
 		// Set some window properties
-		this.setTitle("Simple Map Editor!");
+		this.setTitle("This is the Title");
 		this.setSize(900, 900);
 		this.setFocusable(true);
 		this.getContentPane().add(viewZ);

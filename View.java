@@ -1,15 +1,15 @@
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+// import javax.swing.JTextArea;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.File;
 import javax.swing.JButton;
-import javax.swing.JComponent;
+// import javax.swing.JComponent;
 
 import java.awt.Color;
-import java.awt.Font;
+// import java.awt.Font;
 // import java.awt.Dimension;
 import java.util.ArrayList;
 // import java.awt.*;

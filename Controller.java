@@ -9,6 +9,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.lang.Math;
+import java.awt.Dimension;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import java.awt.GridLayout;
+// import java.awt.MouseInfo;
+// import java.awt.Point;
+// import java.awt.Robot;
+// import javax.swing.JButton;
+// import javax.swing.JFrame;
 // import java.awt.*;
 
 import javax.swing.JOptionPane;
@@ -52,36 +61,88 @@ class Controller implements ActionListener, MouseListener, KeyListener, MouseMot
 		viewO = vo;
 	}
 
+	void changeView(){
+		g.getContentPane().removeAll();
+		g.getContentPane().add(view);
+		g.getContentPane().revalidate();
+		g.getContentPane().repaint();		
+}
+void changeViewZ(){
+	g.getContentPane().removeAll();
+	g.getContentPane().add(viewZ);
+	g.getContentPane().revalidate();
+	g.getContentPane().repaint();
+}
+
+void changeViewO(){
+	g.getContentPane().removeAll();
+	g.getContentPane().add(viewO);
+	g.getContentPane().revalidate();
+	g.getContentPane().repaint();
+}
+void print(String s){
+	System.out.println(s);
+}
+
 	// button events
 	public void actionPerformed(ActionEvent e)
 	{
+		print("something is being pressed");
+		// View One buttons
 
+		// Level Selector Back Button
 		if (e.getSource() == viewO.b20){
-			g.getContentPane().removeAll();
-			g.getContentPane().add(viewZ);
-			g.getContentPane().revalidate();
-			g.getContentPane().repaint();		
+			print("button clicked");
+			changeViewZ();
+		}
+		// Level 1 save
+		else if (e.getSource() == viewO.b0){
+			print("button clicked");
+			model.save("level_1.json");
+		}
+		// Level 1 load
+		else if (e.getSource() == viewO.lb0){
+			print("button clicked");
+			changeView();
+			model.load("level_1.json");
 		}
 
+		// View Zero Buttons
 
+		// Level Editor Button
 		if (e.getSource() == viewZ.b0){
-			g.getContentPane().removeAll();
-			g.getContentPane().add(view);
-			g.getContentPane().revalidate();
-			g.getContentPane().repaint();
+			changeView();
 		}
+		// Level Selector Button
 		else if (e.getSource() == viewZ.b1){
-			g.getContentPane().removeAll();
-			g.getContentPane().add(viewO);
-			g.getContentPane().revalidate();
-			g.getContentPane().repaint();
+			changeViewO();
 		}
+
+		// View Buttons
+
+		// Save Button
 
 		// set up load and save later
 		if (e.getSource() == view.b1){
-			model.save("map.json");
-			System.out.println("this is how ;)");
+			
+			JFrame savePage = new JFrame();
+			savePage.setTitle("The Crazy Diamond Application");
+			savePage.setLayout(new GridLayout(10,2));
+			savePage.setSize(300, 450);
+			savePage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			savePage.setVisible(true);
+            for (int j = 0; j < 20; j++){
+                viewO.buttons[j] = new JButton("Level " + (j+1));
+                viewO.buttons[j].setPreferredSize(new Dimension(150,150));
+                viewO.buttons[j].addActionListener(this);
+				print("action listener is being called");
+                savePage.add(viewO.buttons[j]);
+             }
+
+
+			// model.save("map.json");
 		}
+		// Load Button
 		if (e.getSource() == view.b2){
 			model.load("map.json");
 			System.out.println("that sh*t back, but how?");
