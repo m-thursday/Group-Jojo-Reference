@@ -1,10 +1,15 @@
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.File;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+
 import java.awt.Color;
+import java.awt.Font;
 // import java.awt.Dimension;
 import java.util.ArrayList;
 // import java.awt.*;
@@ -37,6 +42,7 @@ class View extends JPanel
 
 			b3 = new JButton("Clear");
 			b3.addActionListener(c);
+			b3.setForeground(Color.RED);
 			this.add(b3);
 
 			b4 = new JButton("Back");

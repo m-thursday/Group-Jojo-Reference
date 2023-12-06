@@ -2,20 +2,16 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.ActionListener;
+// import java.awt.MouseInfo;
+// import java.awt.Point;
+// import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.lang.Math;
-import java.awt.Dimension;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import java.awt.GridLayout;
-// import java.awt.MouseInfo;
-// import java.awt.Point;
-// import java.awt.Robot;
-// import javax.swing.JButton;
-// import javax.swing.JFrame;
 // import java.awt.*;
+
+import javax.swing.JOptionPane;
 
 class Controller implements ActionListener, MouseListener, KeyListener, MouseMotionListener
 {
@@ -30,6 +26,12 @@ class Controller implements ActionListener, MouseListener, KeyListener, MouseMot
 	boolean keyDown;
 	int margin = 100;
 	int scroll = 5;
+	Object[] ClearOptions = { "Yes", "No", "Um what?" };
+	Object[] Options = { "Yes", "No" };
+
+	// void Game (Game g){
+	// 	game = g;
+	// }
 
 	Controller(Model m, Game game)
 	{
@@ -41,109 +43,85 @@ class Controller implements ActionListener, MouseListener, KeyListener, MouseMot
 	{
 		view = v;
 	}
+
 	void setViewZero(ViewZero vz){
 		viewZ = vz;
 	}
+
 	void setViewOne(ViewOne vo){
 		viewO = vo;
 	}
-	void changeView(){
-			g.getContentPane().removeAll();
-			g.getContentPane().add(view);
-			g.getContentPane().revalidate();
-			g.getContentPane().repaint();		
-	}
-	void changeViewZ(){
-			g.getContentPane().removeAll();
-			g.getContentPane().add(viewZ);
-			g.getContentPane().revalidate();
-			g.getContentPane().repaint();
-	}
-	void changeViewO(){
-			g.getContentPane().removeAll();
-			g.getContentPane().add(viewO);
-			g.getContentPane().revalidate();
-			g.getContentPane().repaint();
-	}
-	void print(String s){
-		System.out.println(s);
-	}
-
 
 	// button events
 	public void actionPerformed(ActionEvent e)
 	{
-		print("something is being pressed");
-		// View One buttons
 
-		// Level Selector Back Button
 		if (e.getSource() == viewO.b20){
-			print("button clicked");
-			changeViewZ();
-		}
-		// Level 1 save
-		else if (e.getSource() == viewO.b0){
-			print("button clicked");
-			model.save("level_1.json");
-		}
-		// Level 1 load
-		else if (e.getSource() == viewO.lb0){
-			print("button clicked");
-			changeView();
-			model.load("level_1.json");
+			g.getContentPane().removeAll();
+			g.getContentPane().add(viewZ);
+			g.getContentPane().revalidate();
+			g.getContentPane().repaint();		
 		}
 
-		// View Zero Buttons
 
-		// Level Editor Button
 		if (e.getSource() == viewZ.b0){
-			changeView();
+			g.getContentPane().removeAll();
+			g.getContentPane().add(view);
+			g.getContentPane().revalidate();
+			g.getContentPane().repaint();
 		}
-		// Level Selector Button
 		else if (e.getSource() == viewZ.b1){
-			changeViewO();
+			g.getContentPane().removeAll();
+			g.getContentPane().add(viewO);
+			g.getContentPane().revalidate();
+			g.getContentPane().repaint();
 		}
 
-		// View Buttons
-
-		// Save Button
+		// set up load and save later
 		if (e.getSource() == view.b1){
-			
-			JFrame savePage = new JFrame();
-			savePage.setTitle("The Crazy Diamond Application");
-			savePage.setLayout(new GridLayout(10,2));
-			savePage.setSize(300, 450);
-			savePage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			savePage.setVisible(true);
-            for (int j = 0; j < 20; j++){
-                viewO.buttons[j] = new JButton("Level " + (j+1));
-                viewO.buttons[j].setPreferredSize(new Dimension(150,150));
-                viewO.buttons[j].addActionListener(this);
-				print("action listener is being called");
-                savePage.add(viewO.buttons[j]);
-             }
-
-
-			// model.save("map.json");
+			model.save("map.json");
+			System.out.println("this is how ;)");
 		}
-		// Load Button
 		if (e.getSource() == view.b2){
 			model.load("map.json");
+			System.out.println("that sh*t back, but how?");
 			view.repaint();
 		}
-		// Clear Button
 		else if (e.getSource() == view.b3){
-			for (int i = model.things.size() - 1; i >= 0; i--){
+			System.out.println("that sh*t gone fr fr");
+			int ClearChoice = JOptionPane.showOptionDialog(null, "Are you sure you want to ZA HANDO?","OI JOSUKE", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, ClearOptions,  ClearOptions[0]);
+			if(ClearChoice == 0){
+				for (int i = model.things.size() - 1; i >= 0; i--){
 				model.removeThing(i);
+				view.repaint();
 			}
-			view.repaint();
+				JOptionPane.showMessageDialog(null, "Level Cleared.");
+			}
+			if(ClearChoice == 2){
+				JOptionPane.showMessageDialog(null, "The Hand (ザ・ハンド（手） Za Hando) is the Stand of Okuyasu Nijimura, featured in Diamond is Unbreakable.");
+				JOptionPane.showMessageDialog(null,"The Hand appears as a humanoid figure typically in attire similar to football pads, though it has several spikes jutting from them.");
+				JOptionPane.showMessageDialog(null,"A towel-like object drapes over its shoulders, with a $ symbol on one end and a ¥ symbol on the other - corresponding with Okuyasu's own fashion theme of currency symbols.");
+				JOptionPane.showMessageDialog(null, "On each side of the Stand's face are blinders that cover its headlight-shaped eyes and limit its vision, a result of Okuyasu's own impulsive demeanor.");
+				JOptionPane.showMessageDialog(null,"Its right hand has spiderweb-like lines on the inside, along with two bumps on its palm. However, these features on its right hand were not shown until later chapters.");
+				JOptionPane.showMessageDialog(null,"The Hand is generally portrayed as being white and wearing blue armor with golden decorations.");
+				JOptionPane.showMessageDialog(null,"Anything The Hand's right palm touches when it does a swiping motion with its arm is erased from this universe, be it physical matters or space itself.");
+				JOptionPane.showMessageDialog(null,"Thanks for reading some epic lore!!!!!!!! >.>");
+			}
+			
+			
 		}
-		// Level Editor Back Button
 		else if(e.getSource() == view.b4){
-			changeViewZ();
-			for (int i = model.things.size() - 1; i >= 0; i--){
-				model.removeThing(i);
+			int BackChoice = JOptionPane.showOptionDialog(null, "Are you sure you want stop time and go back to the menu?","ZA WARUDO", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, Options,  Options[0]);
+			if(BackChoice == 0){
+				g.getContentPane().removeAll();
+				g.getContentPane().add(viewZ);
+				g.getContentPane().revalidate();
+				g.getContentPane().repaint();
+				for (int i = model.things.size() - 1; i >= 0; i--){
+					model.removeThing(i);
 			}
+			}
+			
 		}
 	}
 
