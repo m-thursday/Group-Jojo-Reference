@@ -118,10 +118,6 @@ void print(String s){
 			changeViewO();
 		}
 
-		// View Buttons
-
-		// Save Button
-
 		// set up load and save later
 		if (e.getSource() == view.b1){
 			
