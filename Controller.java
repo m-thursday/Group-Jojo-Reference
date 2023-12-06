@@ -84,7 +84,6 @@ void print(String s){
 	System.out.println(s);
 }
 
-
 	// button events
 	public void actionPerformed(ActionEvent e)
 	{
@@ -118,11 +117,6 @@ void print(String s){
 		else if (e.getSource() == viewZ.b1){
 			changeViewO();
 		}
-
-		// View Buttons
-
-		// Save Button
-		
 
 		// set up load and save later
 		if (e.getSource() == view.b1){
