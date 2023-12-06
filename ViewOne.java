@@ -40,20 +40,20 @@ class ViewOne extends JPanel
 		c.setViewOne(this);
 		model = m;
         // this code works but cant be implemented yet :/
-    //     addSaveButtons(){
-    //     	JFrame savePage = new JFrame();
-	// 		savePage.setTitle("The Crazy Diamond Application");
-	// 		savePage.setLayout(new GridLayout(10,2));
-	// 		savePage.setSize(300, 450);
-	// 		savePage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	// 		savePage.setVisible(true);
-    //         for (int j = 0; j < 20; j++){
-    //             buttons[j] = new JButton("Level " + (j+1));
-    //             buttons[j].setPreferredSize(new Dimension(150,150));
-    //             buttons[j].addActionListener(c);
-    //             savePage.add(buttons[j]);
-    //          }
-    //      }
+        // addSaveButtons(){
+        	// JFrame savePage = new JFrame();
+			// savePage.setTitle("The Crazy Diamond Application");
+			// savePage.setLayout(new GridLayout(10,2));
+			// savePage.setSize(300, 450);
+			// savePage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			// savePage.setVisible(true);
+            // for (int j = 0; j < 20; j++){
+            //     buttons[j] = new JButton("Level " + (j+1));
+            //     buttons[j].setPreferredSize(new Dimension(150,150));
+            //     buttons[j].addActionListener(c);
+            //     savePage.add(buttons[j]);
+            //  }
+        //  }
 
 		// Send mouse events to the controller
 		this.addMouseListener(c);
