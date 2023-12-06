@@ -1,17 +1,21 @@
 import javax.swing.JPanel;
 import java.awt.Graphics;
-import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.Dimension;
 // import java.awt.image.BufferedImage;
 // import javax.imageio.ImageIO;
 // import java.io.File;
-// import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
+import java.awt.Color;
+import java.awt.Dimension;
+// import java.util.ArrayList;A
 // import java.awt.*;
+import java.awt.Font;
 
 class ViewZero extends JPanel
 {
 	JButton b0, b1;
+	JLabel label1;
 	// BufferedImage curr_image = null;
 	// ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
 	Model model;
@@ -23,16 +27,22 @@ class ViewZero extends JPanel
 	
 	ViewZero(Controller c, Model m)
 	{
+		//label1= new JLabel("Welcome");
+		//this.add(label1);
 		// level edirot button
 		b0 = new JButton("Level Editor");
 		b0.addActionListener(c);
-		b0.setPreferredSize(new Dimension(500, 150));
+		b0.setPreferredSize(new Dimension(300, 300));
+		b0.setFont(new Font("", Font.BOLD, 30));
+		b0.setBounds(0, 0, 300, 300);
 		this.add(b0);
+		
 
         // level selector button
         b1 = new JButton("Level Selector");
         b1.addActionListener(c);
-        b1.setPreferredSize(new Dimension(500, 150));
+        b1.setPreferredSize(new Dimension(300, 300));
+		b1.setFont(new Font("", Font.BOLD, 30));
         this.add(b1);
 
 		// Link up to other objects
