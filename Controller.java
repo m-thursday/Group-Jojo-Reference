@@ -6,14 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.lang.Math;
-// import java.awt.Dimension;
-// import javax.swing.JButton;
-// import javax.swing.JFrame;
-// import java.awt.GridLayout;
+import java.awt.Dimension;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import java.awt.GridLayout;
 // import java.awt.MouseInfo;
 // import java.awt.Point;
 // import java.awt.Robot;
-
+// import javax.swing.JButton;
+// import javax.swing.JFrame;
 // import java.awt.*;
 
 class Controller implements ActionListener, MouseListener, KeyListener, MouseMotionListener
@@ -72,6 +73,7 @@ class Controller implements ActionListener, MouseListener, KeyListener, MouseMot
 	// button events
 	public void actionPerformed(ActionEvent e)
 	{
+		print("something is being pressed");
 		// View One buttons
 
 		// Level Selector Back Button
@@ -91,8 +93,6 @@ class Controller implements ActionListener, MouseListener, KeyListener, MouseMot
 			model.load("level_1.json");
 		}
 
-
-
 		// View Zero Buttons
 
 		// Level Editor Button
@@ -108,15 +108,20 @@ class Controller implements ActionListener, MouseListener, KeyListener, MouseMot
 
 		// Save Button
 		if (e.getSource() == view.b1){
-			// JFrame savePage = new JFrame();
-			// savePage.setTitle("The Crazy Diamond Application");
-			// savePage.setLayout(new GridLayout(10,2));
-			// savePage.setSize(300, 450);
-			// savePage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			// savePage.setVisible(true);
-
 			
-			//viewO.addSaveButtons(); // where to add this function
+			JFrame savePage = new JFrame();
+			savePage.setTitle("The Crazy Diamond Application");
+			savePage.setLayout(new GridLayout(10,2));
+			savePage.setSize(300, 450);
+			savePage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			savePage.setVisible(true);
+            for (int j = 0; j < 20; j++){
+                viewO.buttons[j] = new JButton("Level " + (j+1));
+                viewO.buttons[j].setPreferredSize(new Dimension(150,150));
+                viewO.buttons[j].addActionListener(this);
+				print("action listener is being called");
+                savePage.add(viewO.buttons[j]);
+             }
 
 
 			// model.save("map.json");
