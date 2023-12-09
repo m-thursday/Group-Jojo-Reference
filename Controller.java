@@ -13,6 +13,7 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import java.awt.GridLayout;
+import java.io.File;
 // import java.awt.MouseInfo;
 // import java.awt.Point;
 // import java.awt.Robot;
@@ -29,15 +30,23 @@ class Controller implements ActionListener, MouseListener, KeyListener, MouseMot
 	ViewOne viewO;
 	Model model;
 	Game g;
+
+	char  a, b, c, d, e, f, v, h, i, j, k, l, m, n, o, p, q, r, s, w;
+    char[] alphabet = new char[]{a, b, c, d, e, f, v, h, i, j, k, l, m, n, o, p, q, r, s, w};
+	int it = 0;
+	char letter = ' ';
+
 	boolean keyLeft;
 	boolean keyRight;
 	boolean keyUp;
 	boolean keyDown;
 	int margin = 100;
 	int scroll = 5;
+
+
 	Object[] ClearOptions = { "Yes", "No", "Um what?" };
 	Object[] Options = { "Yes", "No" };
-
+	
 	// void Game (Game g){
 	// 	game = g;
 	// }
@@ -66,46 +75,61 @@ class Controller implements ActionListener, MouseListener, KeyListener, MouseMot
 		g.getContentPane().add(view);
 		g.getContentPane().revalidate();
 		g.getContentPane().repaint();		
-}
-void changeViewZ(){
-	g.getContentPane().removeAll();
-	g.getContentPane().add(viewZ);
-	g.getContentPane().revalidate();
-	g.getContentPane().repaint();
-}
+	}
+	void changeViewZ(){
+		g.getContentPane().removeAll();
+		g.getContentPane().add(viewZ);
+		g.getContentPane().revalidate();
+		g.getContentPane().repaint();
+	}
 
-void changeViewO(){
-	g.getContentPane().removeAll();
-	g.getContentPane().add(viewO);
-	g.getContentPane().revalidate();
-	g.getContentPane().repaint();
-}
-void print(String s){
-	System.out.println(s);
-}
+	void changeViewO(){
+		g.getContentPane().removeAll();
+		g.getContentPane().add(viewO);
+		g.getContentPane().revalidate();
+		g.getContentPane().repaint();
+	}
+
+	void print(String s){
+		System.out.println(s);
+	}
+
+	char getChar() {
+		letter = alphabet[it];
+		it ++;
+		return letter;
+	}
+
+	void loadFunc(String filename) {
+		File word = new File(filename);
+		if (word.exists()){
+		changeView();
+		model.load(filename);
+		}
+	}
 
 	// button events
 	public void actionPerformed(ActionEvent e)
 	{
-		print("something is being pressed");
 		// View One buttons
 
 		// Level Selector Back Button
 		if (e.getSource() == viewO.b20){
-			print("button clicked");
 			changeViewZ();
 		}
-		// Level 1 save
-		else if (e.getSource() == viewO.b0){
-			print("button clicked");
-			model.save("level_1.json");
+		// Save Buttons
+		for (int i = 0; i < viewO.buttons.length; i++){
+			if (e.getSource() == viewO.buttons[i]){
+				model.save("level_" + (i+1) + ".json");
+			}
 		}
-		// Level 1 load
-		else if (e.getSource() == viewO.lb0){
-			print("button clicked");
-			changeView();
-			model.load("level_1.json");
+		// Load Buttons
+		for (int j = 0; j < viewO.loadButtons.length; j++){
+			if (e.getSource() == viewO.loadButtons[j]){
+				loadFunc("level_" + (j+1) + ".json");
+			}
 		}
+
 
 		// View Zero Buttons
 
@@ -118,9 +142,10 @@ void print(String s){
 			changeViewO();
 		}
 
-		// set up load and save later
+
+		// View Buttons
+
 		if (e.getSource() == view.b1){
-			
 			JFrame savePage = new JFrame();
 			savePage.setTitle("The Crazy Diamond Application");
 			savePage.setLayout(new GridLayout(10,2));
@@ -131,21 +156,11 @@ void print(String s){
                 viewO.buttons[j] = new JButton("Level " + (j+1));
                 viewO.buttons[j].setPreferredSize(new Dimension(150,150));
                 viewO.buttons[j].addActionListener(this);
-				print("action listener is being called");
-                savePage.add(viewO.buttons[j]);
-             }
-
-
-			// model.save("map.json");
+				savePage.add(viewO.buttons[j]);
+			}
 		}
-		// Load Button
-		if (e.getSource() == view.b2){
-			model.load("map.json");
-			System.out.println("that sh*t back, but how?");
-			view.repaint();
-		}
-		else if (e.getSource() == view.b3){
-			System.out.println("that sh*t gone fr fr");
+		if (e.getSource() == view.b3){
+
 			int ClearChoice = JOptionPane.showOptionDialog(null, "Are you sure you want to ZA HANDO?","OI JOSUKE", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, ClearOptions,  ClearOptions[0]);
 			if(ClearChoice == 0){
 				for (int i = model.things.size() - 1; i >= 0; i--){

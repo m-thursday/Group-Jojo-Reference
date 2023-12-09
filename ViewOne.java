@@ -22,12 +22,12 @@ class ViewOne extends JPanel
 	ViewOne(Controller c, Model m)
 	{
         
-        for (int i = 0; i < buttons.length - 1; i++){
-            buttons[i] = new JButton("Level " + (i+1));
-            buttons[i].addActionListener(c);
-            buttons[i].setPreferredSize(new Dimension(150,150));
-            buttons[i].setFont(new Font("", Font.BOLD, 20));
-            this.add(buttons[i]);
+        for (int i = 0; i < loadButtons.length - 1; i++){
+            loadButtons[i] = new JButton("Level " + (i+1));
+            loadButtons[i].addActionListener(c);
+            loadButtons[i].setPreferredSize(new Dimension(150,150));
+            loadButtons[i].setFont(new Font("", Font.BOLD, 20));
+            this.add(loadButtons[i]);
         }
 
             b20 = new JButton("Back");
